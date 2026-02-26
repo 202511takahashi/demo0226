@@ -26,13 +26,24 @@ public class TodoController {
 
     @GetMapping("/new")
     public String newTodo() {
-        return "todo/form";
+        return "todo/new";
+    }
+
+    @GetMapping("/confirm")
+    public String confirmView(@RequestParam(value = "title", required = false, defaultValue = "") String title, Model model) {
+        model.addAttribute("title", title);
+        return "todo/confirm";
     }
 
     @PostMapping("/confirm")
     public String confirm(@RequestParam("title") String title, Model model) {
         model.addAttribute("title", title);
         return "todo/confirm";
+    }
+
+    @GetMapping("/complete")
+    public String completeView() {
+        return "todo/complete";
     }
 
     @PostMapping("/complete")
